@@ -4,16 +4,19 @@ import { AiOutlineArrowRight, AiOutlineHeart } from "react-icons/ai";
 import { BiCommentDetail } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { singleFetchBlog } from "../../redux/features/singleBlog/singleBlogSlice";
+import PopularBlog from "./PopularBlog";
 // import PopularBlog from "../../components/PopularBlog";
 const SingleBlog = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const blog = useSelector((state) => state.blog);
-  console.log(blog?.author, ":::17");
+  const blog = useSelector((state) => state.blog.blog);
+  console.log(blog, ":::12");
   useEffect(() => {
     // Dispatch an action to fetch single blog by id
     dispatch(singleFetchBlog(id));
   }, [dispatch, id]);
+
+  const { title, image, content, author, authorPic, category } = blog || {};
 
   return (
     <>
@@ -21,18 +24,18 @@ const SingleBlog = () => {
         <div className="mb-4 md:mb-0 w-full mx-auto relative">
           <div className="px-4 lg:px-0">
             <h2 className="text-4xl font-semibold text-gray-800 leading-tight">
-              {blog?.title}
+              {title}
             </h2>
             <a
               href="#"
               className="py-2 text-green-700 inline-flex items-center justify-center mb-2"
             >
-              {blog?.category}
+              {category}
             </a>
           </div>
 
           <img
-            src={blog?.image}
+            src={image}
             className="w-full object-cover lg:rounded"
             style={{ height: "28em" }}
             alt="Blog Cover"
@@ -42,7 +45,7 @@ const SingleBlog = () => {
         <div className="flex flex-col lg:flex-row lg:space-x-12">
           <div className="px-4 lg:px-0 mt-8 text-gray-700 text-lg leading-relaxed w-full lg:w-3/4">
             {/* ... Existing code ... */}
-            {blog?.title}
+            {content}
             <br /> <br />
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
@@ -76,13 +79,13 @@ const SingleBlog = () => {
             <div className="p-4 border-t border-b md:border md:rounded">
               <div className="flex py-2">
                 <img
-                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaCUyMGJsb2d8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+                  src={authorPic}
                   className="h-10 w-10 rounded-full mr-2 object-cover"
                   alt="Author"
                 />
                 <div>
                   <p className="font-semibold text-gray-700 text-sm">
-                    {blog?.author}
+                    {author}
                   </p>
                   <p className="font-semibold text-gray-600 text-xs">Editor</p>
                 </div>
@@ -119,7 +122,7 @@ const SingleBlog = () => {
           </div>
         </div>
 
-        {/* <PopularBlog currentVideoId={id} tags={category} /> */}
+        <PopularBlog currentVideoId={id} tags={category} />
       </article>
     </>
   );
