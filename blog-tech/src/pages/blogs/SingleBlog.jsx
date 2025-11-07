@@ -10,10 +10,10 @@ const SingleBlog = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const blog = useSelector((state) => state.blog.blog);
-  console.log(blog, ":::12");
   useEffect(() => {
     // Dispatch an action to fetch single blog by id
     dispatch(singleFetchBlog(id));
+    window.scrollTo(0, 0);
   }, [dispatch, id]);
 
   const { title, image, content, author, authorPic, category } = blog || {};

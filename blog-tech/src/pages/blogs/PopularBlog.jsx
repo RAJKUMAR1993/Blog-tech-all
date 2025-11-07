@@ -21,7 +21,7 @@ const PopularBlog = ({ currentVideoId, tags }) => {
         <div className="flex flex-wrap -m-4">
           {relatedBlogs.length > 0 ? (
             relatedBlogs
-              .slice(0, 3)
+              .slice(0, 5)
               .map((blog, index) => <RelatedBlogCard blog={blog} key={index} />)
           ) : (
             <div>No related blog found</div>

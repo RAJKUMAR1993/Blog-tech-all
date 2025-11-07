@@ -1,64 +1,124 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { tagsSelected } from "../../redux/features/filter/filterSlice";
 
 const CategoryList = () => {
+  const dispatch = useDispatch();
+  const { tags: tagsSelectedTags } = useSelector((state) => state.filter);
+  const isTagsSelected = (tag) => tagsSelectedTags.includes(tag);
+
   return (
     <>
-      {/* Sidebar */}
-      <aside className="w-full lg:w-1/3">
-        <div className="bg-white p-6 rounded shadow-sm">
-          <h3 className="text-gray-800 font-bold text-lg mb-4">
-            POPULAR TOPICS
-          </h3>
-          <ul className="space-y-4">
-            <li className="flex items-center justify-between">
-              <div className="flex items-center">
-                <span className="w-3 h-3 bg-green-300 rounded mr-3 block"></span>
-                <span className="text-gray-700">Nutrition</span>
-              </div>
-              <span className="text-gray-400 text-sm">23 articles</span>
-            </li>
-            <li className="flex items-center justify-between">
-              <div className="flex items-center">
-                <span className="w-3 h-3 bg-indigo-200 rounded mr-3 block"></span>
-                <span className="text-gray-700">Food & Diet</span>
-              </div>
-              <span className="text-gray-400 text-sm">18 articles</span>
-            </li>
-            <li className="flex items-center justify-between">
-              <div className="flex items-center">
-                <span className="w-3 h-3 bg-yellow-300 rounded mr-3 block"></span>
-                <span className="text-gray-700">Workouts</span>
-              </div>
-              <span className="text-gray-400 text-sm">34 articles</span>
-            </li>
-            <li className="flex items-center justify-between">
-              <div className="flex items-center">
-                <span className="w-3 h-3 bg-blue-200 rounded mr-3 block"></span>
-                <span className="text-gray-700">Immunity</span>
-              </div>
-              <span className="text-gray-400 text-sm">9 articles</span>
-            </li>
-          </ul>
-        </div>
-
-        <div className="bg-white p-6 rounded shadow-sm mt-6">
-          <h3 className="text-gray-800 font-bold text-lg mb-3">SUBSCRIBE</h3>
-          <p className="text-gray-600 text-sm mb-4">
-            Subscribe to our newsletter. We deliver the best health-related
-            articles to your inbox
-          </p>
-          <form className="flex flex-col">
-            <input
-              type="email"
-              placeholder="your email address"
-              className="border border-gray-200 rounded px-3 py-2 mb-3 text-sm focus:outline-none"
-            />
-            <button className="bg-indigo-600 text-white rounded py-2">
-              Subscribe
-            </button>
-          </form>
-        </div>
-      </aside>
+      {/* category list */}
+      <div className="mb-4">
+        <ul>
+          <li
+            className={`px-1 py-4 border-b border-t border-white hover:border-gray-200 transition duration-300
+           ${isTagsSelected("AI") ? "selected bg-green-200 rounded" : ""}`}
+          >
+            <a
+              onClick={() => dispatch(tagsSelected("AI"))}
+              className="flex items-center text-gray-600 cursor-pointer"
+            >
+              <span className="inline-block h-4 w-4 bg-green-200 mr-3"></span>
+              Artificial Intelligence
+              <span className="text-gray-500 ml-auto">5 articles</span>
+              <i className="text-gray-500 bx bx-right-arrow-alt ml-1"></i>
+            </a>
+          </li>
+          <li
+            className={`px-1 py-4 border-b border-t border-white hover:border-gray-200 transition duration-300     ${
+              isTagsSelected("Startups") ? "selected bg-green-200 rounded" : ""
+            }`}
+          >
+            <a
+              onClick={() => dispatch(tagsSelected("Startups"))}
+              className="flex items-center text-gray-600 cursor-pointer"
+            >
+              <span className="inline-block h-4 w-4 bg-green-200 mr-3"></span>
+              Startups
+              <span className="text-gray-500 ml-auto">18 articles</span>
+              <i className="text-gray-500 bx bx-right-arrow-alt ml-1"></i>
+            </a>
+          </li>
+          <li
+            className={`px-1 py-4 border-b border-t border-white hover:border-gray-200 transition duration-300 ${
+              isTagsSelected("Security") ? "selected bg-green-200 rounded" : ""
+            }`}
+          >
+            <a
+              onClick={() => dispatch(tagsSelected("Security"))}
+              className="flex items-center text-gray-600 cursor-pointer"
+            >
+              <span className="inline-block h-4 w-4 bg-yellow-300 mr-3"></span>
+              Security
+              <span className="text-gray-500 ml-auto">34 articles</span>
+              <i className="text-gray-500 bx bx-right-arrow-alt ml-1"></i>
+            </a>
+          </li>
+          <li
+            className={`px-1 py-4 border-b border-t border-white hover:border-gray-200 transition duration-300 ${
+              isTagsSelected("Apps") ? "selected bg-green-200 rounded" : ""
+            } `}
+          >
+            <a
+              onClick={() => dispatch(tagsSelected("Apps"))}
+              className="flex items-center text-gray-600 cursor-pointer"
+            >
+              <span className="inline-block h-4 w-4 bg-blue-300 mr-3"></span>
+              Apps
+              <span className="text-gray-500 ml-auto">9 articles</span>
+              <i className="text-gray-500 bx bx-right-arrow-alt ml-1"></i>
+            </a>
+          </li>
+          {/* <li
+            className={`px-1 py-4 border-b border-t border-white hover:border-gray-200 transition duration-300 ${
+              isTagsSelected("Tech") ? "selected bg-green-200 rounded" : ""
+            } `}
+          >
+            <a
+              onClick={() => dispatch(tagsSelected("Tech"))}
+              className="flex items-center text-gray-600 cursor-pointer"
+            >
+              <span className="inline-block h-4 w-4 bg-blue-300 mr-3"></span>
+              Tech
+              <span className="text-gray-500 ml-auto">9 articles</span>
+              <i className="text-gray-500 bx bx-right-arrow-alt ml-1"></i>
+            </a>
+          </li>
+          <li
+            className={`px-1 py-4 border-b border-t border-white hover:border-gray-200 transition duration-300 ${
+              isTagsSelected("css") ? "selected bg-green-200 rounded" : ""
+            } `}
+          >
+            <a
+              onClick={() => dispatch(tagsSelected("css"))}
+              className="flex items-center text-gray-600 cursor-pointer"
+            >
+              <span className="inline-block h-4 w-4 bg-blue-300 mr-3"></span>
+              Css
+              <span className="text-gray-500 ml-auto">9 articles</span>
+              <i className="text-gray-500 bx bx-right-arrow-alt ml-1"></i>
+            </a>
+          </li>
+          <li
+            className={`px-1 py-4 border-b border-t border-white hover:border-gray-200 transition duration-300 ${
+              isTagsSelected("debounce") ? "selected bg-green-200 rounded" : ""
+            } `}
+          >
+            <a
+              onClick={() => dispatch(tagsSelected("debounce"))}
+              className="flex items-center text-gray-600 cursor-pointer"
+            >
+              <span className="inline-block h-4 w-4 bg-blue-300 mr-3"></span>
+              Debounce
+              <span className="text-gray-500 ml-auto">9 articles</span>
+              <i className="text-gray-500 bx bx-right-arrow-alt ml-1"></i>
+            </a>
+          </li> */}
+        </ul>
+      </div>
     </>
   );
 };
