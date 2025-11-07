@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaBars } from "react-icons/fa6";
+import { FaBars, FaSearch } from "react-icons/fa";
+import Search from "./Search";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,10 +23,10 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-[1100px] mx-auto flex items-center justify-between py-4 px-4 border-b">
-        <Link href="/" className="uppercase font-bold text-purple-700 text-lg">
+        <Link to="/" className="uppercase font-bold text-purple-700 text-lg">
           LOGO
         </Link>
-
+        <Search />
         <nav className="hidden md:flex items-center gap-6">
           <Link
             to="/"

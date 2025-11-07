@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card ";
-import CategoryList from "../home/CategoryList";
+import CategoryList from "../home/Category";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlogs } from "../../redux/features/blogs/blogSlice";
 
@@ -10,10 +10,10 @@ const PostCards = () => {
   const { blogs, loading, isError, error } = useSelector(
     (state) => state.blogs
   );
+  const { tags, search } = useSelector((state) => state.filter);
   useEffect(() => {
-    // Dispatch an action to fetch blogs
-    dispatch(fetchBlogs());
-  }, [dispatch]);
+    dispatch(fetchBlogs({ tags, search }));
+  }, [dispatch, tags, search]);
 
   // Pagination logic (if needed)
   const blogPerPage = 5;

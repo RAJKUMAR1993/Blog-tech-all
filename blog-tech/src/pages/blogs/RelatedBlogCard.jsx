@@ -8,7 +8,6 @@ const RelatedBlogCard = ({ blog }) => {
     <div className="p-4 md:w-1/3">
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
         <Link to={`/blogs/${blog.id}`}>
-          {" "}
           <img
             className="lg:h-48 md:h-36 w-full object-cover object-center"
             src={image}
@@ -20,7 +19,6 @@ const RelatedBlogCard = ({ blog }) => {
             {category}
           </p>
           <Link to={`/blogs/${blog.id}`}>
-            
             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
               {title.slice(0, 72) + "..."}
             </h1>

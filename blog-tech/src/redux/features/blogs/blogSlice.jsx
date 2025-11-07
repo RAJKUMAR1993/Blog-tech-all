@@ -12,9 +12,9 @@ const initialState = {
 
 export const fetchBlogs = createAsyncThunk(
   "blog/fetchBlogs",
-  async (_, thunkAPI) => {
+  async ({ tags, search }) => {
     try {
-      const response = await getBlog();
+      const response = await getBlog(tags, search);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
