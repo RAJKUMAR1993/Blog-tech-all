@@ -20,7 +20,7 @@ const RelatedBlogCard = ({ blog }) => {
             {category}
           </p>
           <Link to={`/blogs/${blog.id}`}>
-            {" "}
+            
             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
               {title.slice(0, 72) + "..."}
             </h1>
